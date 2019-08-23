@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
+
 
 namespace Rocket.Validation.Abstract
 {
     public interface IValidationResult
     {
-        string PropertyName { get; set; }
-        bool IsValid { get; set; }
-        List<string> Messages { get; set; }
+        string ParameterName { get; set; }
+        bool IsValid { get; }
+        void Add(string propertyName, string message);
     }
 }
