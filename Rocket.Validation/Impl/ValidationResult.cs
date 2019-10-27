@@ -12,7 +12,7 @@ namespace Rocket.Validation.Impl
         {
             _propertyValidationResultCache = new List<IPropertyValidationResult>();
         }
-        public IPropertyValidationResult[] Result { get; set; }
+        public IPropertyValidationResult[] Result { get => _propertyValidationResultCache.ToArray(); }
         public bool IsValid { get => _propertyValidationResultCache.All(propertyValidationResult => propertyValidationResult.IsValid); }
         public void Add(string propertyName, string message)
         {
