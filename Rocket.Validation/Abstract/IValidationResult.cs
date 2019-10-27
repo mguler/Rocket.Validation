@@ -5,7 +5,7 @@ namespace Rocket.Validation.Abstract
 {
     public interface IValidationResult
     {
-        string ParameterName { get; set; }
+        IPropertyValidationResult[] Result { get; }
         bool IsValid { get; }
         void Add(string propertyName, string message);
     }

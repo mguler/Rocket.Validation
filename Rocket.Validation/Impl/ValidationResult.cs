@@ -7,14 +7,13 @@ namespace Rocket.Validation.Impl
 {
     public class ValidationResult : IValidationResult
     {
-        private readonly List<IPropertyValidationResult> _propertyValidationResultCache;
+        private readonly List<IPropertyValidationResult> _propertyValidationResultCache = new List<IPropertyValidationResult>();
         public ValidationResult()
         {
             _propertyValidationResultCache = new List<IPropertyValidationResult>();
         }
-        public string ParameterName { get; set; }
+        public IPropertyValidationResult[] Result { get; set; }
         public bool IsValid { get => _propertyValidationResultCache.All(propertyValidationResult => propertyValidationResult.IsValid); }
-
         public void Add(string propertyName, string message)
         {
             var propertyValidationResult = _propertyValidationResultCache.SingleOrDefault(pvr => pvr.PropertyName == propertyName);

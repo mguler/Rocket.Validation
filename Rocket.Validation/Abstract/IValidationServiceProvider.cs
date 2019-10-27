@@ -9,7 +9,7 @@ namespace Rocket.Validation.Abstract
     public interface IValidationServiceProvider
     {
         bool ThrowExceptionIfValidationFails { get; set; }
-        bool Validate(MethodInfo method, params object[] methodParameters);
+        IValidationResult Validate(MethodInfo method, params object[] methodParameters);
         void Register<TOwner, TParam, T1>(Expression<Func<TOwner, Func<T1>>> method, Func<TParam, IValidationResult> validatorFunction);
         void Register<TOwner, TParam, T1, T2>(Expression<Func<TOwner, Func<T1, T2>>> method, Func<TParam, IValidationResult> validatorFunction);
         void Register<TOwner, TParam, T1, T2, T3>(Expression<Func<TOwner, Func<T1, T2, T3>>> method, Func<TParam, IValidationResult> validatorFunction);

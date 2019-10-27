@@ -20,7 +20,7 @@ namespace Rocket.Validation.Impl
             }
         }
 
-        public bool Validate(MethodInfo method, params object[] methodParameters)
+        public IValidationResult Validate(MethodInfo method, params object[] methodParameters)
         {
             var validator = _validatorCache.SingleOrDefault(methodInfo =>
                 methodInfo.Key == method).Value;
@@ -29,15 +29,17 @@ namespace Rocket.Validation.Impl
             {
                 try
                 {
-                    validator.DynamicInvoke(methodParameters);
+                   var result =  validator.DynamicInvoke(methodParameters);
+                    return (IValidationResult)result;
                 }
                 catch (Exception ex)
                 {
                     throw ex.InnerException ?? ex;
                 }
             }
-
-            return true;
+            else {
+                return new ValidationResult { };
+            }
         }
 
         private void AddToValidatorCache(LambdaExpression method, Delegate validatorFunction)
