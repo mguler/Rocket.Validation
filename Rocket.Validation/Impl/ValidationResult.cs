@@ -7,7 +7,7 @@ namespace Rocket.Validation.Impl
 {
     public class ValidationResult : IValidationResult
     {
-        private readonly List<IPropertyValidationResult> _propertyValidationResultCache = new List<IPropertyValidationResult>();
+        private readonly List<IPropertyValidationResult> _propertyValidationResultCache;
         public ValidationResult()
         {
             _propertyValidationResultCache = new List<IPropertyValidationResult>();
